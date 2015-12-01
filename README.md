@@ -40,6 +40,7 @@ pause
 # License
 
 This code is released under the BSD 3-clause.
+
 I am not responsible if this tool sets your samples on fire. I tried it with a certain number of FLAC and WAV samples, but they all were created the same way with the same tools, so broken samples might screw up entirely (e.g. old 8-bit mono samples with an odd length that were saved with very old versions of OpenMPT, as it didn't write the required padding byte). Just in case, you should keep the original samples around in case the tool screws up or if you chop off too much silence. How about modifying that example batch file above to automatically create a backup? ;)
 
 # Contact
