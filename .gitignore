@@ -26,3 +26,8 @@
 *.exe
 *.out
 *.app
+
+lib/
+obj/
+Debug/
+Release/
