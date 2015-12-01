@@ -167,6 +167,9 @@ static bool DecodeWAV(FILE *f, FILE *of)
 			return false;
 		}
 	}
+	uint32_t size = ftell(of);
+	fseek(of, 4, SEEK_SET);
+	fwrite(&size, 4, 1, of);
 
 	return true;
 }
@@ -382,4 +385,3 @@ int wmain(int argc, wchar_t* argv[])
 
 	return 0;
 }
-
