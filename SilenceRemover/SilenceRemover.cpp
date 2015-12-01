@@ -111,7 +111,7 @@ static bool DecodeWAV(FILE *f, FILE *of)
 			if(!sampleRate) sampleRate = fmt.sampleRate;
 			else fmt.sampleRate = sampleRate;
 			delaySamples = static_cast<uint32_t>(0.5 + (delay * sampleRate) / 1000.0);
-			delayBytes = static_cast<uint32_t>(0.5 + (delay * (sampleRate * fmt.numChannels * ((fmt.bitsPerSample + 7) / 8))) / 1000.0);
+			delayBytes = delaySamples * fmt.numChannels * ((fmt.bitsPerSample + 7) / 8);
 		} else if(!memcmp(magic, "data", 4))
 		{
 			if(fmt.format != WAVFormatChunk::fmtPCM && fmt.format != WAVFormatChunk::fmtFloat)
@@ -167,7 +167,7 @@ static bool DecodeWAV(FILE *f, FILE *of)
 			return false;
 		}
 	}
-	uint32_t size = ftell(of);
+	uint32_t size = ftell(of) - 8;
 	fseek(of, 4, SEEK_SET);
 	fwrite(&size, 4, 1, of);
 
